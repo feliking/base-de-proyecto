@@ -14,6 +14,7 @@
         <th>Distrito</th>
         <th>Direccion</th>
         <th>Capacidad</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -27,6 +28,7 @@
           <th>{{$colegio->distrito}}</th>
           <th>{{$colegio->direccion}}</th>
           <th>{{$colegio->capacidad}} Estudiantes</th>
+          <th><a href="{{route('colegio.edit', ['colegio' => $colegio])}}"><i class="fa fa-edit"></i></a>  <a href="#"><i class="fa fa-trash-alt"></i></a></th>
         </tr>
       @endforeach
     </tbody>

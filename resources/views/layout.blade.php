@@ -28,7 +28,7 @@
               @section('menu')
 
                 <a href="{{route('colegio.create')}}" class="form-control btn btn-info">Agregar Colegio</a>
-                <a href="" class="form-control btn btn-info">Agregar Maestro</a>
+                <a href="{{route('maestro.create')}}" class="form-control btn btn-info">Agregar Maestro</a>
                 <a href="{{route('colegio.index')}}" class="form-control btn btn-info">Lista de Colegios</a>
                 <a href="{{route('maestro.index')}}" class="form-control btn btn-info">Lista de Maestros</a>
               @show

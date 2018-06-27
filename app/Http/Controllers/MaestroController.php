@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Colegio;
 use App\Maestro;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,8 @@ class MaestroController extends Controller
      */
     public function create()
     {
-        //
+        $colegios = Colegio::all();
+        return view('maestro.create', compact('colegios'));
     }
 
     /**
@@ -37,7 +39,22 @@ class MaestroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = request()->validate([
+          'ci' => 'required | unique:maestros',
+          'nombre' => '',
+          'colegio_id' => 'required',
+          'materia' => '',
+          'experiencia' => ''
+        ]);
+
+        Maestro::create([
+          'ci' => $data['ci'],
+          'nombre' => $data['nombre'],
+          'colegio_id' => $data['colegio_id'],
+          'materia' => $data['materia'],
+          'experiencia' => $data['experiencia'],
+        ]);
+        return redirect(route('maestro.index'));
     }
 
     /**

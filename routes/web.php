@@ -19,6 +19,10 @@ Route::get('/', function () {
 
 Route::get('/maestros', 'MaestroController@index')->name('maestro.index');
 
+Route::get('/maestros/create', 'MaestroController@create')->name('maestro.create');
+
+Route::post('/maestros/store', 'MaestroController@store')->name('maestro.store');
+
 //Rutas de Colegios
 
 Route::get('/colegios', 'ColegioController@index')->name('colegio.index');
@@ -28,3 +32,7 @@ Route::get('/colegios/create', 'ColegioController@create')->name('colegio.create
 Route::get('/colegios/{id}', 'ColegioController@show')->name('colegio.show');
 
 Route::post('/colegios/store', 'ColegioController@store')->name('colegio.store');
+
+Route::get('/colegios/{colegio}/editar', 'ColegioController@edit')->name('colegio.edit');
+
+Route::put('/colegios/{colegio}', 'ColegioController@update')->name('colegio.update');

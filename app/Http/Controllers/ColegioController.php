@@ -80,7 +80,7 @@ class ColegioController extends Controller
      */
     public function edit(Colegio $colegio)
     {
-        //
+        return view('colegio.edit', compact('colegio'));
     }
 
     /**
