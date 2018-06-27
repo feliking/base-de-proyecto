@@ -29,10 +29,12 @@ Route::get('/colegios', 'ColegioController@index')->name('colegio.index');
 
 Route::get('/colegios/create', 'ColegioController@create')->name('colegio.create');
 
-Route::get('/colegios/{id}', 'ColegioController@show')->name('colegio.show');
+Route::get('/colegios/{id}', 'ColegioController@show')->where('id','[0-9]+')->name('colegio.show');
 
 Route::post('/colegios/store', 'ColegioController@store')->name('colegio.store');
 
 Route::get('/colegios/{colegio}/editar', 'ColegioController@edit')->name('colegio.edit');
 
 Route::put('/colegios/{colegio}', 'ColegioController@update')->name('colegio.update');
+
+Route::delete('/colegios/{colegio}', 'ColegioController@destroy')->name('colegio.destroy');

@@ -28,7 +28,13 @@
           <th>{{$colegio->distrito}}</th>
           <th>{{$colegio->direccion}}</th>
           <th>{{$colegio->capacidad}} Estudiantes</th>
-          <th><a href="{{route('colegio.edit', ['colegio' => $colegio])}}"><i class="fa fa-edit"></i></a>  <a href="#"><i class="fa fa-trash-alt"></i></a></th>
+          <th><a href="{{route('colegio.edit', ['colegio' => $colegio])}}"><i class="fa fa-edit"></i></a>
+            <form action="{{route('colegio.destroy', ['colegio' => $colegio])}}" method="POST">
+              @csrf
+              @method('DELETE')
+              <button type="submit">Eliminar</button>
+            </form>
+          </th>
         </tr>
       @endforeach
     </tbody>

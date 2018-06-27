@@ -90,9 +90,20 @@ class ColegioController extends Controller
      * @param  \App\Colegio  $colegio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Colegio $colegio)
+    public function update(Colegio $colegio)
     {
-        //
+        $data = request()->validate([
+          'nombre' => 'required',
+          'distrito' => '',
+          'direccion' => '',
+          'capacidad' => ''
+        ],[
+          'nombre.required' => 'El campo es obligatorio'
+        ]);
+        //$data = request()->all();
+        //$data['valor'] = bcrypt($data['valor']);
+        $colegio->update(request()->all());
+        return redirect(route('colegio.index'));
     }
 
     /**
@@ -103,6 +114,8 @@ class ColegioController extends Controller
      */
     public function destroy(Colegio $colegio)
     {
-        //
+        $colegio->delete();
+
+        return redirect(route('colegio.index'));
     }
 }
