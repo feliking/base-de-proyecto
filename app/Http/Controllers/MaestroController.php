@@ -76,7 +76,8 @@ class MaestroController extends Controller
      */
     public function edit(Maestro $maestro)
     {
-        //
+        $colegios = Colegio::all();
+        return view('maestro.edit', compact('colegios', 'maestro'));
     }
 
     /**
@@ -88,7 +89,16 @@ class MaestroController extends Controller
      */
     public function update(Request $request, Maestro $maestro)
     {
-        //
+      $data = request()->validate([
+        'ci' => 'required',
+        'nombre' => '',
+        'colegio_id' => 'required',
+        'materia' => '',
+        'experiencia' => ''
+      ]);
+
+      $maestro->update($data);
+      return redirect(route('maestro.index'));
     }
 
     /**
@@ -99,6 +109,7 @@ class MaestroController extends Controller
      */
     public function destroy(Maestro $maestro)
     {
-        //
+        $maestro->delete();
+        return redirect(route('maestro.index'));
     }
 }

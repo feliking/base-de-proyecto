@@ -23,6 +23,12 @@ Route::get('/maestros/create', 'MaestroController@create')->name('maestro.create
 
 Route::post('/maestros/store', 'MaestroController@store')->name('maestro.store');
 
+Route::get('/maestros/{maestro}/editar', 'MaestroController@edit')->name('maestro.edit');
+
+Route::put('/maestros/{maestro}', 'MaestroController@update')->name('maestro.update');
+
+Route::delete('/maestros/{maestro}', 'MaestroController@destroy')->name('maestro.destroy');
+
 //Rutas de Colegios
 
 Route::get('/colegios', 'ColegioController@index')->name('colegio.index');

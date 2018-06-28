@@ -18,6 +18,7 @@
         <th>Colegio</th>
         <th>Materia</th>
         <th>Anos de experiencia</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -32,6 +33,13 @@
           <th><a href="{{route('colegio.show', ['id' => $maestro->colegio->id])}}">{{$maestro->colegio->nombre}}</a></th>
           <th>{{$maestro->materia}}</th>
           <th>{{$maestro->experiencia}}</th>
+          <th><a href="{{route('maestro.edit', ['maestro' => $maestro])}}"><i class="fa fa-edit"></i></a>
+            <form action="{{route('maestro.destroy', ['maestro' => $maestro])}}" method="POST">
+              @csrf
+              @method('DELETE')
+              <button type="submit">Eliminar</button>
+            </form>
+          </th>
         </tr>
       @endforeach
     </tbody>

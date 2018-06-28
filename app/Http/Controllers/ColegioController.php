@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Maestro;
 use App\Colegio;
 use Illuminate\Http\Request;
 
@@ -114,7 +115,9 @@ class ColegioController extends Controller
      */
     public function destroy(Colegio $colegio)
     {
-        $colegio->delete();
+        if (!$colegio->delete()) {
+          return view('error.404');
+        }
 
         return redirect(route('colegio.index'));
     }
