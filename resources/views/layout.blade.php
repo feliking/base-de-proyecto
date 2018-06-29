@@ -15,7 +15,7 @@
     <div class="container-fluid">
       <div class="row py-3 text-center">
         @section('bienvenida')
-          <h1 class="">Bienvenido al CRUD de maestros</h1>
+          <h1 class="">Bienvenido al CRUD de maestros v2.0</h1>
         @show
       </div>
       <div class="row">
