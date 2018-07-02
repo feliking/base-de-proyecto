@@ -115,9 +115,11 @@ class ColegioController extends Controller
      */
     public function destroy(Colegio $colegio)
     {
-        if (!$colegio->delete()) {
-          return view('error.404');
+        $maestros = $colegio->maestros;
+        foreach ($maestros as $maestro) {
+          $maestro->delete();
         }
+        $colegio->delete();
 
         return redirect(route('colegio.index'));
     }
