@@ -21,6 +21,7 @@ class CreateMaestrosTable extends Migration
             $table->foreign('colegio_id')->references('id')->on('colegios');
             $table->string('materia');
             $table->integer('experiencia');
+            $table->string('image')->nullable();
         });
     }
 

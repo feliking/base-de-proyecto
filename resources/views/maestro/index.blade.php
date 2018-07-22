@@ -17,7 +17,8 @@
         <th>Nombre</th>
         <th>Colegio</th>
         <th>Materia</th>
-        <th>Anos de experiencia</th>
+        <th>Años de experiencia</th>
+        <th>Fotografìa</th>
         <th></th>
       </tr>
     </thead>
@@ -33,6 +34,7 @@
           <th><a href="{{route('colegio.show', ['id' => $maestro->colegio->id])}}">{{$maestro->colegio->nombre}}</a></th>
           <th>{{$maestro->materia}}</th>
           <th>{{$maestro->experiencia}}</th>
+          <th><img src="{{ Storage::disk('public')->url($maestro->image)}}"/></th>
           <th><a href="{{route('maestro.edit', ['maestro' => $maestro])}}"><i class="fa fa-edit"></i></a>
             <form action="{{route('maestro.destroy', ['maestro' => $maestro])}}" method="POST">
               @csrf

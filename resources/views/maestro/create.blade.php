@@ -16,7 +16,7 @@
       </div>
     </div>
   @endif
-  <form action="{{route('maestro.store')}}" method="post">
+  <form action="{{route('maestro.store')}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
       <label for="">Carnet de identidad del maestro</label>
@@ -61,6 +61,10 @@
     <div class="form-group">
       <label for="">Años de experiencia</label>
       <input type="text" class="form-control" name="experiencia" placeholder="Introduzca la cantidad de años de experiencia" value="{{ old('experiencia')}}">
+    </div>
+    <div class="form-group">
+      <label for="">Fotografia</label>
+      <input type="file" class="form-control" name="foto">
     </div>
     <div class="form-group">
       <input type="submit" class="form-control btn btn-info" value="Agregar Maestro">

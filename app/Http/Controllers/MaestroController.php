@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Colegio;
 use App\Maestro;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MaestroController extends Controller
 {
@@ -39,12 +40,20 @@ class MaestroController extends Controller
      */
     public function store(Request $request)
     {
+
+        if ($image = request()->file('foto')) {
+          $upload = $image->store('fotos', 'public');
+        }
+        else {
+          $upload = 'empty';
+        }
         $data = request()->validate([
           'ci' => 'required | unique:maestros',
           'nombre' => '',
           'colegio_id' => 'required',
           'materia' => '',
-          'experiencia' => ''
+          'experiencia' => '',
+          'image' => ''
         ]);
 
         Maestro::create([
@@ -53,6 +62,7 @@ class MaestroController extends Controller
           'colegio_id' => $data['colegio_id'],
           'materia' => $data['materia'],
           'experiencia' => $data['experiencia'],
+          'image' =>  $upload
         ]);
         return redirect(route('maestro.index'));
     }
@@ -89,15 +99,31 @@ class MaestroController extends Controller
      */
     public function update(Request $request, Maestro $maestro)
     {
+      if ($image = request()->file('foto')) {
+        $upload = $image->store('fotos', 'public');
+      }
+      else {
+        $upload = 'empty';
+      }
       $data = request()->validate([
         'ci' => 'required',
         'nombre' => '',
         'colegio_id' => 'required',
         'materia' => '',
-        'experiencia' => ''
+        'experiencia' => '',
+        'image' => ''
       ]);
-
-      $maestro->update($data);
+      $maestro->update([
+        'ci' => $data['ci'],
+        'nombre' => $data['nombre'],
+        'colegio_id' => $data['colegio_id'],
+        'materia' => $data['materia'],
+        'experiencia' => $data['experiencia'],
+        'image' =>  $upload
+      ]);
+      //data_set($data, 'foto', $upload);
+      //$data['foto'] = $image->store('fotos', 'public');
+      //$maestro->update($data);
       return redirect(route('maestro.index'));
     }
 
@@ -109,6 +135,7 @@ class MaestroController extends Controller
      */
     public function destroy(Maestro $maestro)
     {
+        Storage::disk('public')->delete($maestro->image);
         $maestro->delete();
         return redirect(route('maestro.index'));
     }
